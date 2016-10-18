@@ -2,10 +2,18 @@ declared-services:
   natural-language-classifier-standard:
     label: natural_language_classifier
     plan: standard
-applications:
+applications: #not yet linked
 - services:
-  - natural-language-classifier-standard
-  name: natural-language-classifier-demo
+  - natural-language-classifier-service
+  name: natural-language-classifier-demo-elizabeth #name will det. url for app
   command: npm start
   path: .
   memory: 512M
+
+#npm helps you download diff. modules(any node app)
+#npm start will read file and execute
+#allows you to scale
+#when uploaded to BlueMix, this file will tell it to link it to the app
+
+
+#npm start goes into .json and installs the dependencies 

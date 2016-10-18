@@ -67,11 +67,12 @@ $(document).ready(function() {
   };
 
   [
-    'Is it hot outside?',
-    'What is the expected high for today?',
-    'Will it be foggy tomorrow morning?',
-    'Should I prepare for sleet?',
-    'Will there be a storm today?'
+    'Schedule a hair cut for today',
+    'My exam is next week',
+    'Meet with Kelly this afternoon',
+    'The OpenCL lecture is tomorrow',
+    'Buy milk',
+    'Pick up coffee for the boss'
   ].forEach(function(question){
     $('<a>').text(question)
       .mousedown(function() {

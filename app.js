@@ -16,7 +16,7 @@
 
 'use strict';
 
-var express    = require('express'),
+var express    = require('express'), //require = import
   app          = express(),
   watson       = require('watson-developer-cloud');
 
@@ -24,16 +24,19 @@ var express    = require('express'),
 require('./config/express')(app);
 
 // Create the service wrapper
-var nlClassifier = watson.natural_language_classifier({
+var nlClassifier = watson.natural_language_classifier({ //NLC object
   url : 'https://gateway.watsonplatform.net/natural-language-classifier/api',
-  username : '<username>',
-  password : '<password>',
+  username : '63e125ea-cc04-4130-91c5-c2d94cdeee5d',
+  password : 'Z2vXRDDUlt6I',
   version  : 'v1'
 
 });
 
 // render index page
-app.get('/', function(req, res) {
+//routes, specifies function
+//this is what will happen to the response that is received
+app.get('/', function(req, res) { //get info to be displayed
+  console.log('CUNY TECH');
   res.render('index', {
     ct: req._csrfToken,
     ga: process.env.GOOGLE_ANALYTICS
@@ -42,12 +45,16 @@ app.get('/', function(req, res) {
 
 // Call the pre-trained classifier with body.text
 // Responses are json
-app.post('/api/classify', function(req, res, next) {
+app.post('/api/classify', function(req, res, next) { //sends data to backend
+  //creates a new (key,value) in hashmap
   var params = {
-    classifier: process.env.CLASSIFIER_ID || '<classifier-id>', // pre-trained classifier
-    text: req.body.text
+    classifier: process.env.CLASSIFIER_ID || '3a84cfx63-nlc-374', // pre-trained classifier
+    text: req.body.text //what we are trying to classify
   };
 
+  //console.log(params);
+  //the NLC object takes in json obj.
+  //once classify executes, then function will -> asynchronous
   nlClassifier.classify(params, function(err, results) {
     if (err)
       return next(err);
